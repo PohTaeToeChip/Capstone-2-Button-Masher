@@ -1,0 +1,511 @@
+/* =========================
+   GLOBAL
+   ========================= */
+
+body {
+  margin: 0;
+  background-color: #050509;
+  color: #e5e5e5;
+  font-family: "Orbitron", sans-serif; /* same font you already use */
+}
+
+/* =========================
+   HERO SECTION
+   ========================= */
+
+#hero {
+ 
+  margin-bottom: -2rem; /* kill the gap cleanly */
+}
+
+.hero-banner {
+  padding: 3.5rem 1.5rem; /* keeps the hero feeling strong */
+}
+
+.section-capstone {
+  padding: 3rem 1.5rem 5rem;
+  background: radial-gradient(
+    circle at 50% -20%,
+    rgba(140, 0, 255, 0.2),
+    #050509 60%
+  );
+}
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  padding: 4rem 1.5rem;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  background: #050509;
+}
+
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(140, 0, 255, 0.65) 0%,
+    rgba(140, 0, 255, 0.25) 35%,
+    transparent 70%
+  );
+  animation: orbBreath 12s ease-in-out infinite alternate;
+  filter: blur(30px);
+  z-index: 0;
+}
+
+.hero-banner-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+}
+/* Make sure the hero can host absolutely-positioned children */
+.hero-banner {
+  position: relative; /* you already have this, just make sure it’s there */
+}
+
+/* Avatar container: bottom-right, behind text/buttons */
+.hero-avatar-wrap {
+  position: absolute;
+  right: 6%;
+  bottom: 4%;
+  z-index: 1;          /* below text/buttons, above orb background */
+  pointer-events: none; /* don’t block clicks on buttons */
+}
+
+/* Actual image sizing + glow */
+.hero-avatar {
+  width: 300px;
+  opacity: 0.9;
+  filter:
+    drop-shadow(0 0 20px rgba(0, 255, 163, 0.6))
+    drop-shadow(0 0 35px rgba(0, 0, 0, 0.9));
+ }
+
+/* Adjust z-index stacking so it sits where we want */
+.hero-banner-inner {  /* title + buttons */
+  position: relative;
+  z-index: 3;
+}
+
+.hero-input-ghosts {  /* floating arrows */
+  z-index: 2;
+}
+
+/* Hide the portrait on very small screens if it feels crowded */
+@media (max-width: 580px) {
+  .hero-avatar-wrap {
+    display: none;
+  }
+}
+
+
+@keyframes orbBreath {
+  0% {
+    transform: translate(-5%, -5%) scale(1);
+  }
+  100% {
+    transform: translate(5%, 5%) scale(1.25);
+  }
+}
+/* Floating ghost inputs in hero background */
+.hero-input-ghosts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; 
+}
+
+.input-ghost {
+  position: absolute;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #00ffa3;
+  opacity: 0;
+  white-space: nowrap;
+  animation: ghostCycle 7s ease-in-out infinite;
+  transform: translate3d(0,0,0);
+}
+.ghost-1 { top: 17%; left: 28%;  animation-delay: 0s; }
+.ghost-2 {  top: 12%; left: 80%; animation-delay: 1.4s; }
+.ghost-3 { top: 50%; left: 20%;  animation-delay: 2.8s; }
+.ghost-4 { top: 63%; right: 22%; animation-delay: 3.9s; }
+.ghost-5 { top: 34%; left: 46%;  animation-delay: 5.1s; }
+.ghost-6 { bottom: 18%; left: 62%; animation-delay: 0.9s; }
+.ghost-7 { top: 15%; right: 75%; animation-delay: 4.2s; }
+.ghost-8 {  top: 50%; right: 5%;  animation-delay: 6s; }
+.ghost-9 { bottom: 13%; left: 33%; animation-delay: 2.2s; }
+.ghost-10 {  top: 50%; left: 1%; animation-delay: 3.3s; }
+
+@keyframes ghostCycle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  15% {
+    opacity: 0.55;
+    transform: translate3d(3px, -3px, 0);
+  }
+  40% {
+    opacity: 0.9;
+    transform: translate3d(6px, -6px, 0);
+  }
+  60% {
+    opacity: 0.45;
+    transform: translate3d(3px, -1px, 0);
+  }
+  80% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0; /* invisible before next cycle */
+  }
+}
+
+
+
+
+/* Hero text */
+.hero-title {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: capitalize;
+  text-align: left;
+  color: #00fa93;
+}
+
+.hero-line {
+  display: block; /* each span on its own line */
+}
+
+.hero-accent {
+  letter-spacing: 0.08em; /* BUTTON line feeling intentional */
+}
+
+/* BUTTON line in Anton */
+.button {
+  font-family: "Anton", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* MASHER accent color */
+.masher {
+  color: #f5a700;
+}
+
+/* (If you bring this back) hero subtext under title */
+.hero-subtext {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  opacity: 0.85;
+  margin-top: 0.75rem;
+  max-width: 500px;
+  margin-left: 0;
+  margin-right: auto;
+  color: #00fa93;
+}
+
+/* Hero buttons row */
+.hero-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* Individual hero buttons */
+.hero-btn {
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  padding: 0.85rem 2.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary (solid) */
+.hero-btn-primary {
+  background-color: #050509;
+  color: #00ffa3;
+  border: 2px solid #00ffa3;
+  box-shadow:
+    0 0 12px rgba(0, 255, 163, 0.4),
+    inset 0 0 6px rgba(0, 255, 163, 0.2);
+}
+
+/* Secondary (outline) */
+.hero-btn-secondary {
+  background-color: transparent;
+  color: #00ffa3;
+  border: 2px solid #00ffa3;
+  box-shadow: 0 0 10px rgba(0, 255, 163, 0.3);
+}
+
+/* Hover states */
+.hero-btn-primary:hover,
+.hero-btn-secondary:hover {
+  color: #050509;
+  background-color: #00ffa3;
+  box-shadow:
+    0 0 18px rgba(0, 255, 163, 0.8),
+    0 0 30px rgba(0, 255, 163, 0.6);
+  transform: translateY(-3px) scale(1.03);
+}
+
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+#navbar {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  background-color: #050509;
+  border-bottom: 1px solid rgba(0, 255, 163, 0.18);
+}
+
+.nav-brand {
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  font-size: 1rem;
+  color: #00ffa3;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #e5e5e5;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #00ffa3;
+  text-shadow: 0 0 10px rgba(0, 255, 163, 0.7);
+}
+
+
+/* =========================
+   CAPSTONE SECTION
+   ========================= */
+
+.section-capstone {
+  position: relative;
+  padding: 4rem 1.5rem 5rem;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(0, 255, 163, 0.14),
+    #050509 60%
+  );
+  overflow: hidden;
+}
+
+.section-capstone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% -20%,
+    rgba(140, 0, 255, 0.2),
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+.capstone-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: #00ffa3;
+  text-shadow: 0 0 8px rgba(0, 255, 163, 0.6);
+}
+
+.section-lead {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  opacity: 0.9;
+  max-width: 640px;
+  margin-bottom: 2.5rem;
+  color: #e5e5e5;
+}
+
+.capstone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+/* Cards as neon tech panels */
+.capstone-card {
+  background-color: #0f0f13;
+  border: 1px solid rgba(0, 255, 163, 0.25);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: #e5e5e5;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.capstone-card:hover {
+  border-color: #00ffa3;
+  box-shadow: 0 0 18px rgba(0, 255, 163, 0.4);
+  transform: translateY(-4px);
+}
+
+.capstone-card h3 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.75rem;
+  color: #00ffa3;
+}
+
+.capstone-card p {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: #e5e5e5;
+}
+
+
+/* =========================
+   MEDIA QUERIES
+   ========================= */
+
+/* Stack capstone cards on mobile */
+@media (max-width: 800px) {
+  .capstone-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile nav + hero buttons behavior */
+@media (max-width: 600px) {
+  #navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.25rem 0;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+}
+/* =========================
+   FOOTER (Matches Hero BG)
+   ========================= */
+
+#footer {
+  position: relative;
+  overflow: hidden;
+  background: #050509; /* same base as hero */
+  margin-top: 0;
+  padding-top: 1rem; 
+  border-top: 1px solid rgba(0, 255, 163, 0.18);
+}
+
+/* Neon breathing orb (same as hero but slightly softer) */
+#footer::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(140, 0, 255, 0.55) 0%,
+    rgba(140, 0, 255, 0.18) 40%,
+    transparent 75%
+  );
+  filter: blur(50px);
+  animation: footerOrb 16s ease-in-out infinite alternate;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+#footer * {
+  position: relative;
+  z-index: 2; /* lift elements above orb */
+}
+
+/* Footer glow animation */
+@keyframes footerOrb {
+  0% { transform: translate(-6%, -4%) scale(1); }
+  100% { transform: translate(6%, 4%) scale(1.25); }
+}
+
+/* =========================
+   Footer text + links
+   ========================= */
+
+#footer .nav-link,
+#footer p {
+  color: #00ffa3 !important;               /* neon accent */
+  letter-spacing: 0.1em;
+  font-family: "Orbitron", sans-serif !important;
+  text-shadow: 0 0 6px rgba(0,255,163,0.4);
+}
+
+#footer .nav-link:hover {
+  color: #f5a700 !important;               /* your MASHER yellow */
+  text-shadow: 0 0 12px rgba(245,167,0,0.8);
+}
+
+/* Remove Bootstrap’s ugly border color */
+#footer .border-bottom {
+  border-color: rgba(0,255,163,0.18) !important;
+}
