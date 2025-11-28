@@ -26,7 +26,8 @@ style.css
 /project-capstone1.html
 /project-capstone2.html
 
-
+##LIVE SITE
+https://pohtaetoechip.github.io/Capstone-2-Button-Masher/
 
 ## 📫 Contact
 Built by **Bakiem**  
